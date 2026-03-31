@@ -1,0 +1,75 @@
+:root {
+  /* Typography */
+  --font-family: 'Inter', sans-serif;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --font-size-xs: 0.65rem;
+  --font-size-sm: 0.8rem;
+  --font-size-base: 1rem;
+  --font-size-md: 1.15rem;
+  --font-size-lg: 1.35rem;
+  --font-size-xl: 1.75rem;
+  --font-size-2xl: 2.25rem;
+  --font-size-3xl: 3rem;
+  --font-size-4xl: 3.5rem;
+
+  /* Colors - Dark Theme */
+  --color-bg-primary: #0a0a0a;
+  --color-bg-secondary: #0f0f0f;
+  --color-bg-elevated: #1a1a1a;
+  --color-bg-card: #141414;
+  --color-bg-input: #1e1e1e;
+
+  /* Brand - Green Fitness */
+  --color-brand: #2ecc71;
+  --color-brand-light: #3ddb80;
+  --color-brand-dark: #25a35a;
+  --color-brand-glow: rgba(46, 204, 113, 0.15);
+
+  /* Text */
+  --color-text-primary: #f5f5f5;
+  --color-text-secondary: #a0a0a0;
+  --color-text-muted: #666666;
+  --color-text-inverse: #0a0a0a;
+
+  /* Border */
+  --color-border: #2a2a2a;
+  --color-border-light: #333333;
+
+  /* Feedback */
+  --color-success: #25d366;
+  --color-error: #e74c3c;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 80px;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-hover: 0 8px 24px rgba(46, 204, 113, 0.12);
+  --shadow-elevated: 0 12px 32px rgba(0, 0, 0, 0.5);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 300ms ease;
+
+  /* Layout */
+  --max-width: 1200px;
+  --header-height: 64px;
+}

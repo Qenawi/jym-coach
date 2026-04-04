@@ -1,5 +1,7 @@
 <script setup>
-import config from '../config/site'
+import { useSettings } from '../composables/useSettings'
+
+const { settings } = useSettings()
 
 const scrollTo = (id) => {
   const el = document.getElementById(id)
@@ -11,8 +13,8 @@ const scrollTo = (id) => {
   <header class="navbar">
     <div class="navbar-inner container">
       <a class="logo" href="#" @click.prevent="scrollTo('hero')">
-        <span class="logo-name">{{ config.brand.name }}</span>
-        <span class="logo-tag">{{ config.brand.tagline }}</span>
+        <span class="logo-name">{{ settings.brandName }}</span>
+        <span class="logo-tag">{{ settings.brandTagline }}</span>
       </a>
       <nav class="nav-links">
         <a href="#coach" @click.prevent="scrollTo('coach')">About</a>

@@ -1,6 +1,7 @@
 <script setup>
 import config from '../config/site'
 import { useTracking } from '../composables/useTracking'
+import { useSettings } from '../composables/useSettings'
 
 const props = defineProps({
   plan: { type: Object, required: true },
@@ -8,6 +9,7 @@ const props = defineProps({
 })
 
 const { trackOrder } = useTracking()
+const { settings } = useSettings()
 
 const orderViaWhatsApp = () => {
   trackOrder(props.plan.name, props.plan.duration_months)
@@ -15,10 +17,10 @@ const orderViaWhatsApp = () => {
   const message = config.whatsapp.messageTemplate
     .replace('{planName}', props.plan.name)
     .replace('{price}', props.plan.price || '')
-    .replace('{currency}', config.currency)
+    .replace('{currency}', settings.currency)
     .replace('{duration}', props.plan.duration_months)
 
-  window.open(`https://wa.me/${config.whatsapp.number}?text=${encodeURIComponent(message)}`, '_blank')
+  window.open(`https://wa.me/${settings.whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank')
 }
 </script>
 
@@ -41,7 +43,7 @@ const orderViaWhatsApp = () => {
     <!-- Price -->
     <div v-if="plan.price" class="plan-price">
       <span class="price-amount">{{ plan.price }}</span>
-      <span class="price-currency">{{ config.currency }}</span>
+      <span class="price-currency">{{ settings.currency }}</span>
     </div>
 
     <!-- Divider -->

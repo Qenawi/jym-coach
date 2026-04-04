@@ -4,6 +4,7 @@ import config from '../config/site'
 import { usePlans } from '../composables/usePlans'
 import { useStories } from '../composables/useStories'
 import { useCoach } from '../composables/useCoach'
+import { useSettings } from '../composables/useSettings'
 import HeroBanner from '../components/HeroBanner.vue'
 import CoachIntro from '../components/CoachIntro.vue'
 import PlanGrid from '../components/PlanGrid.vue'
@@ -12,8 +13,10 @@ import SuccessGrid from '../components/SuccessGrid.vue'
 const { plans, loading: plansLoading, error: plansError, fetchPlans } = usePlans()
 const { stories, loading: storiesLoading, error: storiesError, fetchStories } = useStories()
 const { coach, loading: coachLoading, error: coachError, fetchCoach } = useCoach()
+const { loadSettings } = useSettings()
 
 onMounted(() => {
+  loadSettings()
   fetchCoach()
   fetchPlans()
   fetchStories()

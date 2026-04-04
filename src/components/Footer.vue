@@ -2,9 +2,11 @@
 import { onMounted } from 'vue'
 import config from '../config/site'
 import { useDeveloper } from '../composables/useDeveloper'
+import { useSettings } from '../composables/useSettings'
 
 const year = new Date().getFullYear()
 const { developer, fetchDeveloper } = useDeveloper()
+const { settings } = useSettings()
 
 onMounted(() => {
   fetchDeveloper()
@@ -15,7 +17,7 @@ onMounted(() => {
   <footer class="footer">
     <div class="container footer-inner">
       <div class="footer-brand">
-        <h4>{{ config.brand.name }}</h4>
+        <h4>{{ settings.brandName }}</h4>
         <p>{{ config.footer.about }}</p>
       </div>
       <div class="footer-links">
@@ -28,11 +30,11 @@ onMounted(() => {
       <div class="footer-contact">
         <h4>Contact</h4>
         <p>{{ config.footer.email }}</p>
-        <a :href="'https://wa.me/' + config.whatsapp.number" target="_blank">WhatsApp</a>
+        <a :href="'https://wa.me/' + settings.whatsappNumber" target="_blank">WhatsApp</a>
       </div>
     </div>
     <div class="footer-bottom container">
-      <p>&copy; {{ year }} {{ config.brand.name }}. {{ config.footer.copyright }}</p>
+      <p>&copy; {{ year }} {{ settings.brandName }}. {{ config.footer.copyright }}</p>
       <p v-if="developer" class="developed-by">Developed by <a :href="developer.url" target="_blank" class="developer-link">{{ developer.name }}</a></p>
     </div>
   </footer>

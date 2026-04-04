@@ -14,6 +14,8 @@ const orderViaWhatsApp = () => {
 
   const message = config.whatsapp.messageTemplate
     .replace('{planName}', props.plan.name)
+    .replace('{price}', props.plan.price || '')
+    .replace('{currency}', config.currency)
     .replace('{duration}', props.plan.duration_months)
 
   window.open(`https://wa.me/${config.whatsapp.number}?text=${encodeURIComponent(message)}`, '_blank')
@@ -34,6 +36,12 @@ const orderViaWhatsApp = () => {
     <div class="plan-duration">
       <span class="duration-number">{{ plan.duration_months }}</span>
       <span class="duration-label">{{ plan.duration_months === 1 ? 'Month' : 'Months' }}</span>
+    </div>
+
+    <!-- Price -->
+    <div v-if="plan.price" class="plan-price">
+      <span class="price-amount">{{ plan.price }}</span>
+      <span class="price-currency">{{ config.currency }}</span>
     </div>
 
     <!-- Divider -->
@@ -148,6 +156,27 @@ const orderViaWhatsApp = () => {
 .duration-label {
   font-size: var(--font-size-base);
   color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Price */
+.plan-price {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-lg);
+}
+
+.price-amount {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  line-height: 1;
+}
+
+.price-currency {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
   font-weight: var(--font-weight-medium);
 }
 

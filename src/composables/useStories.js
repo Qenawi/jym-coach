@@ -1,34 +1,41 @@
 import { ref } from 'vue'
+import config from '../config/site'
+import { demoStories } from '../config/demo'
+import { getCacheItem, setCacheItem } from '../utils/cookieCache'
 
-const stories_data = [
-  {
-    id: 'story-1',
-    name: 'Ahmed M.',
-    imageUrl: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=500&h=400&fit=crop',
-  },
-  {
-    id: 'story-2',
-    name: 'Omar K.',
-    imageUrl: 'https://images.unsplash.com/photo-1550345332-09e3ac987658?w=500&h=400&fit=crop',
-  },
-  {
-    id: 'story-3',
-    name: 'Sara H.',
-    imageUrl: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=500&h=400&fit=crop',
-  },
-  {
-    id: 'story-4',
-    name: 'Youssef A.',
-    imageUrl: 'https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=500&h=400&fit=crop',
-  },
-]
+const KEY = config.siteKey
 
 export function useStories() {
   const stories = ref([])
+  const loading = ref(false)
+  const error = ref(null)
 
-  const fetchStories = () => {
-    stories.value = stories_data
+  const fetchStories = async () => {
+    if (config.demoMode) {
+      stories.value = demoStories
+      return
+    }
+
+    const cached = getCacheItem(`stories_${KEY}`)
+    if (cached) {
+      stories.value = cached
+      return
+    }
+
+    loading.value = true
+    error.value = null
+    try {
+      const { db } = await import('../firebase/config')
+      const { collection, getDocs } = await import('firebase/firestore')
+      const snap = await getDocs(collection(db, 'sites', KEY, 'stories'))
+      stories.value = snap.docs.map(d => ({ id: d.id, ...d.data() }))
+      if (stories.value.length) setCacheItem(`stories_${KEY}`, stories.value)
+    } catch (err) {
+      error.value = err.message
+    } finally {
+      loading.value = false
+    }
   }
 
-  return { stories, fetchStories }
+  return { stories, loading, error, fetchStories }
 }

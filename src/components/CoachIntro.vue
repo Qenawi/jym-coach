@@ -1,33 +1,35 @@
 <script setup>
-import config from '../config/site'
+defineProps({
+  coach: { type: Object, required: true },
+})
 </script>
 
 <template>
   <section id="coach" class="section coach">
     <div class="container">
       <div class="section-title">
-        <h2>{{ config.coach.sectionTitle }}</h2>
+        <h2>Meet Your Coach</h2>
       </div>
 
       <div class="coach-card">
         <!-- Photo -->
         <div class="coach-photo">
-          <img :src="config.coach.photoUrl" :alt="config.coach.name" />
+          <img :src="coach.photoUrl" :alt="coach.name" />
           <div class="photo-border"></div>
         </div>
 
         <!-- Info -->
         <div class="coach-info">
-          <h3 class="coach-name">{{ config.coach.name }}</h3>
-          <p class="coach-bio">{{ config.coach.bio }}</p>
+          <h3 class="coach-name">{{ coach.name }}</h3>
+          <p class="coach-bio">{{ coach.bio }}</p>
 
           <div class="divider"></div>
 
           <div class="certificates">
             <h4>Credentials</h4>
             <div class="cert-list">
-              <div v-for="cert in config.coach.certificates" :key="cert" class="cert-item">
-                <span class="cert-icon">✦</span>
+              <div v-for="cert in coach.certificates" :key="cert" class="cert-item">
+                <span class="cert-icon">&#10022;</span>
                 <span>{{ cert }}</span>
               </div>
             </div>

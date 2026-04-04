@@ -1,6 +1,14 @@
 <script setup>
+import { onMounted } from 'vue'
 import config from '../config/site'
+import { useDeveloper } from '../composables/useDeveloper'
+
 const year = new Date().getFullYear()
+const { developer, fetchDeveloper } = useDeveloper()
+
+onMounted(() => {
+  fetchDeveloper()
+})
 </script>
 
 <template>
@@ -25,7 +33,7 @@ const year = new Date().getFullYear()
     </div>
     <div class="footer-bottom container">
       <p>&copy; {{ year }} {{ config.brand.name }}. {{ config.footer.copyright }}</p>
-      <p class="developed-by">Developed by <a :href="config.developer.url" target="_blank" class="developer-link">{{ config.developer.name }}</a></p>
+      <p v-if="developer" class="developed-by">Developed by <a :href="developer.url" target="_blank" class="developer-link">{{ developer.name }}</a></p>
     </div>
   </footer>
 </template>

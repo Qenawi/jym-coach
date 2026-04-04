@@ -86,3 +86,6 @@ coverage/
 .vscode-test
 # resume
 resume.txt
+
+# admin panel 
+admin

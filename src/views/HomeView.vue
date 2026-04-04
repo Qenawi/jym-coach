@@ -5,6 +5,7 @@ import { usePlans } from '../composables/usePlans'
 import { useStories } from '../composables/useStories'
 import { useCoach } from '../composables/useCoach'
 import { useSettings } from '../composables/useSettings'
+import { checkFreshness } from '../composables/useFreshness'
 import HeroBanner from '../components/HeroBanner.vue'
 import CoachIntro from '../components/CoachIntro.vue'
 import PlanGrid from '../components/PlanGrid.vue'
@@ -15,7 +16,8 @@ const { stories, loading: storiesLoading, error: storiesError, fetchStories } = 
 const { coach, loading: coachLoading, error: coachError, fetchCoach } = useCoach()
 const { loadSettings } = useSettings()
 
-onMounted(() => {
+onMounted(async () => {
+  await checkFreshness()
   loadSettings()
   fetchCoach()
   fetchPlans()

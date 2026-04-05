@@ -8,6 +8,11 @@ const year = new Date().getFullYear()
 const { developer, fetchDeveloper } = useDeveloper()
 const { settings } = useSettings()
 
+const scrollTo = (id) => {
+  const el = document.getElementById(id)
+  if (el) el.scrollIntoView({ behavior: 'smooth' })
+}
+
 onMounted(() => {
   fetchDeveloper()
 })
@@ -22,10 +27,10 @@ onMounted(() => {
       </div>
       <div class="footer-links">
         <h4>Quick Links</h4>
-        <a href="#hero">Home</a>
-        <a href="#coach">About</a>
-        <a href="#plans">Plans</a>
-        <a href="#stories">Results</a>
+        <a href="#hero" @click.prevent="scrollTo('hero')">Home</a>
+        <a href="#coach" @click.prevent="scrollTo('coach')">About</a>
+        <a href="#plans" @click.prevent="scrollTo('plans')">Plans</a>
+        <a href="#stories" @click.prevent="scrollTo('stories')">Results</a>
       </div>
       <div class="footer-contact">
         <h4>Contact</h4>

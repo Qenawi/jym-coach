@@ -81,7 +81,7 @@ const orderViaWhatsApp = () => {
 <style scoped>
 .plan-card {
   background-color: var(--color-bg-card);
-  border: 1px solid var(--color-border);
+  border: 2px solid var(--color-border);
   border-radius: var(--radius-lg);
   padding: var(--space-2xl) var(--space-xl);
   display: flex;
@@ -90,6 +90,7 @@ const orderViaWhatsApp = () => {
   text-align: center;
   position: relative;
   transition: all var(--transition-normal);
+  cursor: pointer;
 }
 
 .plan-card:hover {
@@ -98,9 +99,19 @@ const orderViaWhatsApp = () => {
   transform: translateY(-6px);
 }
 
+.plan-card:active {
+  transform: translateY(-2px);
+  border-image: linear-gradient(135deg, var(--color-brand-light), var(--color-brand), var(--color-brand-dark)) 1;
+  box-shadow: 0 0 20px rgba(46, 204, 113, 0.25);
+}
+
 .plan-popular {
   border-color: var(--color-brand);
   box-shadow: 0 0 24px rgba(46, 204, 113, 0.1);
+}
+
+.plan-popular:active {
+  box-shadow: 0 0 28px rgba(46, 204, 113, 0.35);
 }
 
 .popular-badge {
